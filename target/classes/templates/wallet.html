@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th='http://www.thymeleaf.org'>
+
+<head>
+    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
+
+    <title>Wallet balance</title>
+</head>
+
+<body>
+    <div class='card card-body bg-light'>
+        <!-- the question mark after grade ensures that it doesn't crash when grade is null -->
+        <h1>
+            <p th:text="'This wallet contains the following amount: ' +${wallet}" />
+        </h1>
+
+    </div>
+
+</body>
+
+</html>
