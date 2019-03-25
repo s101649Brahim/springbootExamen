@@ -17,6 +17,7 @@ import edu.ap.spring.service.Block;
 import edu.ap.spring.service.BlockChain;
 import edu.ap.spring.service.Wallet;
 import edu.ap.spring.transaction.Transaction;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 public class BlockChainController {
@@ -63,7 +64,7 @@ public class BlockChainController {
 
     @GetMapping("/balance/{input}")
     public String balance(Model model, @PathVariable("input") String input) {
-        init();
+        this.init();
         transaction1();
         if (walletA.toString() == input) {
             model.addAttribute("wallet", walletA.getBalance());
@@ -75,6 +76,34 @@ public class BlockChainController {
 
     @GetMapping("/transaction")
     public String transaction() {
+        return "transaction";
+    }
+
+    @PostMapping("/transaction")
+    public String postMethodName(@RequestParam("from") String from, @RequestParam("to") String to,
+            @RequestParam("amount") float amount) {
+        if (from == walletA.toString()) {
+            Block block = new Block();
+            block.setPreviousHash(bChain.getLastHash());
+
+            try {
+                block.addTransaction(walletA.sendFunds(walletB.getPublicKey(), amount), bChain);
+            } catch (Exception e) {
+            }
+
+            bChain.addBlock(block);
+        } else {
+            Block block = new Block();
+            block.setPreviousHash(bChain.getLastHash());
+
+            try {
+                block.addTransaction(walletB.sendFunds(walletA.getPublicKey(), amount), bChain);
+            } catch (Exception e) {
+            }
+
+            bChain.addBlock(block);
+        }
+
         return "transaction";
     }
 

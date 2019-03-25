@@ -18,14 +18,20 @@
         <form th:action='@{/transaction}' method='POST' onsubmit='return validate()'>
             <div class='form-group row'>
                 <div class='col-xs-4'>
-                    <label for='WalletA'>WalletA : </label>
-                    <input type='text' class='form-control' name='firstName' id='firstName'>
+                    <label for='from'>From : </label>
+                    <input type='text' class='form-control' name='from' id='from'>
                 </div>
             </div>
             <div class='form-group row'>
                 <div class='col-xs-4'>
-                    <label for='WalletB'>WalletB : </label>
-                    <input type='text' class='form-control' name='lastName' id='lastName'>
+                    <label for='to'>To : </label>
+                    <input type='text' class='form-control' name='to' id='to'>
+                </div>
+            </div>
+            <div class='form-group row'>
+                <div class='col-xs-4'>
+                    <label for='amount'>Amount : </label>
+                    <input type='text' class='form-control' name='amount' id='amount'>
                 </div>
             </div>
 
