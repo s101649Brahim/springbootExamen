@@ -73,4 +73,9 @@ public class BlockChainController {
         return "wallet";
     }
 
+    @GetMapping("/transaction")
+    public String transaction() {
+        return "transaction";
+    }
+
 }
